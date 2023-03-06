@@ -22,7 +22,7 @@ export default function AddProductForm({ handleClose }) {
             imageUrl: data.get('imageUrl'),
         }
 
-        fetch("http://localhost:5000/save", {
+        fetch("https://mern-build-backend-2.onrender.com/save", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

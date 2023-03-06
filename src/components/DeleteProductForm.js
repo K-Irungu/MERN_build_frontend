@@ -24,7 +24,7 @@ export default function DeleteProductForm({ handleClose }) {
                     sx={{ mt: 2, mb: 1 }}
                     onClick={
                         () => {
-                            fetch("http://localhost:5000/delete", {
+                            fetch("https://mern-build-backend-2.onrender.com/delete", {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json"

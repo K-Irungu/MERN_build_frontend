@@ -20,7 +20,7 @@ export default function EditProductForm({ handleClose }) {
         const rating = data.get('rating')
         const imageUrl = data.get('imageUrl')
 
-        fetch("http://localhost:5000/update", {
+        fetch("https://mern-build-backend-2.onrender.com/update", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

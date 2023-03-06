@@ -31,7 +31,7 @@ const App = () => {
   const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("http://localhost:5000/")
+    fetch("https://mern-build-backend-2.onrender.com/")
       .then((res) => res.json())
       .then((data) => setProducts(data))
   }, [open])
