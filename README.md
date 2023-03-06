@@ -4,6 +4,6 @@ This project is a full-stack web application that I built in one day as a challe
 
 Despite it being my first time working with MongoDb and express, I notice that the concepts underlying development are broadly similar. I am proud of this project as it demonstrates my ability to learn new technologies quickly and apply them to build a functional web application.
 
-## Instructiond for running the application
-
 ## Live link
+https://main--reliable-cheesecake-0a78a7.netlify.app/
+

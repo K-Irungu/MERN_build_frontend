@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-export default function EditProductForm({ handleClose, setProducts}) {
+export default function EditProductForm({ handleClose, setProducts }) {
 
     const handleSubmit = (event) => {
 
@@ -36,7 +36,7 @@ export default function EditProductForm({ handleClose, setProducts}) {
                 imageUrl: imageUrl === "" ? localStorage.getItem('imageUrl') : imageUrl
             })
         })
-        .then(fetch("https://mern-build-backend-2.onrender.com").then((res) => res.json()).then((data) => setProducts(data)))
+            .then(fetch("https://mern-build-backend-2.onrender.com").then((res) => res.json()).then((data) => setProducts(data)))
         handleClose();
     };
 

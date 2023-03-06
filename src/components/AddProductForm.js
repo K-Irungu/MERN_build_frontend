@@ -29,7 +29,7 @@ export default function AddProductForm({ handleClose, setProducts }) {
             },
             body: JSON.stringify(congfigurationObj)
         })
-        .then(fetch("https://mern-build-backend-2.onrender.com").then((res)=> res.json()).then((data) => setProducts(data)))
+            .then(fetch("https://mern-build-backend-2.onrender.com").then((res) => res.json()).then((data) => setProducts(data)))
         handleClose();
     };
 
