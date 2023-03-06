@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-export default function AddProductForm({ handleClose }) {
+export default function AddProductForm({ handleClose, setProducts }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -29,7 +29,7 @@ export default function AddProductForm({ handleClose }) {
             },
             body: JSON.stringify(congfigurationObj)
         })
-            .then((res) => res.json())
+        .then(fetch("https://mern-build-backend-2.onrender.com").then((res)=> res.json()).then((data) => setProducts(data)))
         handleClose();
     };
 

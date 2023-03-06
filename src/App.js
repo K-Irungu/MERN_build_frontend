@@ -29,15 +29,13 @@ const App = () => {
   const [open, setOpen] = React.useState(false);
   const [form, setForm] = React.useState();
   const [products, setProducts] = React.useState([]);
-  const [refresh, setRefresh] = React.useState("")
 
-  console.log(refresh)
 
   React.useEffect(() => {
     fetch("https://mern-build-backend-2.onrender.com/")
       .then((res) => res.json())
       .then((data) => setProducts(data))
-  }, [form])
+  }, [products])
 
   const handleOpen = () => {
     setOpen(true)
@@ -45,13 +43,12 @@ const App = () => {
 
   const handleClose = () => {
     setOpen(false)
-    localStorage.removeItem("productId")
+    localStorage.clear()
   }
 
   const handleAddNewProduct = () => {
     setForm("AddProduct");
     handleOpen();
-    setRefresh("Added")
   }
 
   const handleDelete = (productId) => {
@@ -109,7 +106,7 @@ const App = () => {
         onClose={handleClose}
       >
         <Box sx={style}>
-          {form === "AddProduct" ? <AddProductForm handleClose={handleClose} /> : form === "EditProduct" ? <EditProductForm handleClose={handleClose} /> : form === "DeleteProduct" ? <DeleteProductForm handleClose={handleClose} /> : null}
+          {form === "AddProduct" ? <AddProductForm handleClose={handleClose} setProducts={setProducts} /> : form === "EditProduct" ? <EditProductForm handleClose={handleClose} setProducts={setProducts} /> : form === "DeleteProduct" ? <DeleteProductForm handleClose={handleClose} /> : null}
         </Box>
       </Modal>
     </>
