@@ -34,7 +34,7 @@ const App = () => {
     fetch("https://mern-build-backend-2.onrender.com/")
       .then((res) => res.json())
       .then((data) => setProducts(data))
-  }, [open])
+  }, [form])
 
   const handleOpen = () => {
     setOpen(true)
