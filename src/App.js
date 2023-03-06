@@ -29,6 +29,9 @@ const App = () => {
   const [open, setOpen] = React.useState(false);
   const [form, setForm] = React.useState();
   const [products, setProducts] = React.useState([]);
+  const [refresh, setRefresh] = React.useState("")
+
+  console.log(refresh)
 
   React.useEffect(() => {
     fetch("https://mern-build-backend-2.onrender.com/")
@@ -48,6 +51,7 @@ const App = () => {
   const handleAddNewProduct = () => {
     setForm("AddProduct");
     handleOpen();
+    setRefresh("Added")
   }
 
   const handleDelete = (productId) => {
