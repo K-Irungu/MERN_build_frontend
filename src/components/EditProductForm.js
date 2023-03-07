@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { MenuItem } from '@mui/material';
 
 export default function EditProductForm({ handleClose, setProducts }) {
 
@@ -99,14 +100,19 @@ export default function EditProductForm({ handleClose, setProducts }) {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-
+                                select
                                 fullWidth
                                 name="sponsored"
-                                label="Sponsored (True or False)"
+                                label="Sponsored"
                                 type="sponsored"
                                 id="sponsored"
                                 defaultValue={previousSponsored}
-                            />
+                            >
+                                <MenuItem key="Yes" value="Yes"> Yes </MenuItem>
+                                <MenuItem key="No" value="No"> No </MenuItem>
+
+
+                            </TextField>
                         </Grid>
                         <Grid item xs={12}>
                             <TextField

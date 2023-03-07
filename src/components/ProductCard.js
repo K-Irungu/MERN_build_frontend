@@ -24,7 +24,7 @@ const ProductCard = ({ productDetails, handleEdit, handleDelete }) => {
                 image={product.imageUrl}
                 title="product"
             >
-                {product.sponsored === "true" || product.sponsored === "True" ?
+                {product.sponsored === "yes" || product.sponsored === "Yes" ?
                     <Box sx={{ maxWidth: "30%", borderRadius: "40px", borderWidth: "1.9px", backgroundColor: "#999999" }}>
                         <Typography variant="body2" color="inherit" sx={{ p: 0.5, textAlign: "center" }}> Sponsored </Typography>
                     </Box>

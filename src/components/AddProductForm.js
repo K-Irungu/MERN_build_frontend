@@ -5,6 +5,8 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { MenuItem } from '@mui/material';
+
 
 export default function AddProductForm({ handleClose, setProducts }) {
 
@@ -29,7 +31,9 @@ export default function AddProductForm({ handleClose, setProducts }) {
             },
             body: JSON.stringify(congfigurationObj)
         })
-            .then(fetch("https://mern-build-backend-2.onrender.com").then((res) => res.json()).then((data) => setProducts(data)))
+        .then(fetch("https://mern-build-backend-2.onrender.com")
+        .then((res) => res.json())
+        .then((data) => setProducts(data)))
         handleClose();
     };
 
@@ -77,14 +81,19 @@ export default function AddProductForm({ handleClose, setProducts }) {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
-                                required
+                        <TextField
+                                select
                                 fullWidth
                                 name="sponsored"
                                 label="Sponsored"
                                 type="sponsored"
                                 id="sponsored"
-                            />
+                            >
+                                <MenuItem key="Yes" value="Yes"> Yes </MenuItem>
+                                <MenuItem key="No" value="No"> No </MenuItem>
+
+
+                            </TextField>
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
