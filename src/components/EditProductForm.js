@@ -8,17 +8,29 @@ import Container from '@mui/material/Container';
 
 export default function EditProductForm({ handleClose, setProducts }) {
 
+
+    const previousName = localStorage.getItem('name') 
+    const previousPrice = localStorage.getItem('price')
+    const previousDiscount = localStorage.getItem('discount')
+    const previousSponsored = localStorage.getItem('sponsored')
+    const previousDescription = localStorage.getItem('description')
+    const previousRating = localStorage.getItem('rating')
+    const previousImageUrl = localStorage.getItem('imageUrl') 
+
+
+
     const handleSubmit = (event) => {
 
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        const name = data.get('name')
-        const price = data.get('price')
-        const discount = data.get('discount')
-        const sponsored = data.get('sponsored')
-        const description = data.get('description')
-        const rating = data.get('rating')
-        const imageUrl = data.get('imageUrl')
+
+        const newName = data.get('name')
+        const newPrice = data.get('price')
+        const newDiscount = data.get('discount')
+        const newSponsored = data.get('sponsored')
+        const newDescription = data.get('description')
+        const newRating = data.get('rating')
+        const newImageUrl = data.get('imageUrl')
 
         fetch("https://mern-build-backend-2.onrender.com/update", {
             method: "POST",
@@ -27,13 +39,13 @@ export default function EditProductForm({ handleClose, setProducts }) {
             },
             body: JSON.stringify({
                 _id: localStorage.getItem("productId"),
-                name: name === "" ? localStorage.getItem('name') : name,
-                price: price === "" ? localStorage.getItem('price') : price,
-                discount: discount === "" ? localStorage.getItem('discount') : discount,
-                sponsored: sponsored === "" ? localStorage.getItem('sponsored') : sponsored,
-                description: description === "" ? localStorage.getItem('description') : description,
-                rating: rating === "" ? localStorage.getItem('rating') : rating,
-                imageUrl: imageUrl === "" ? localStorage.getItem('imageUrl') : imageUrl
+                name: newName === "" ? previousName : newName,
+                price: newPrice === "" ? previousPrice : newPrice,
+                discount: newDiscount === "" ? previousDiscount : newDiscount,
+                sponsored: newSponsored === "" ? previousSponsored : newSponsored,
+                description: newDescription === "" ? previousDescription : newDescription,
+                rating: newRating === "" ? previousRating : newRating,
+                imageUrl: newImageUrl === "" ? previousImageUrl : newImageUrl
             })
         })
             .then(fetch("https://mern-build-backend-2.onrender.com").then((res) => res.json()).then((data) => setProducts(data)))
@@ -59,7 +71,8 @@ export default function EditProductForm({ handleClose, setProducts }) {
                                 id="name"
                                 label="Name"
                                 name="name"
-                                autoComplete="name"
+                                autoComplete="Name"
+                                defaultValue={previousName}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -67,9 +80,11 @@ export default function EditProductForm({ handleClose, setProducts }) {
 
                                 fullWidth
                                 name="price"
-                                label="price"
+                                label="Price"
                                 type="price"
                                 id="price"
+                                defaultValue={previousPrice}
+
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -80,6 +95,7 @@ export default function EditProductForm({ handleClose, setProducts }) {
                                 label="Discount"
                                 type="discount"
                                 id="discount"
+                                defaultValue={previousDiscount}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -87,9 +103,10 @@ export default function EditProductForm({ handleClose, setProducts }) {
 
                                 fullWidth
                                 name="sponsored"
-                                label="Sponsored"
+                                label="Sponsored (True or False)"
                                 type="sponsored"
                                 id="sponsored"
+                                defaultValue={previousSponsored}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -98,6 +115,7 @@ export default function EditProductForm({ handleClose, setProducts }) {
                                 fullWidth
                                 name="description"
                                 label="Description"
+                                defaultValue={previousDescription}
 
                             />
                         </Grid>
@@ -109,6 +127,7 @@ export default function EditProductForm({ handleClose, setProducts }) {
                                 label="Rating (1-5)"
                                 type="rating"
                                 id="rating"
+                                defaultValue={previousRating}
                             />
 
 
@@ -121,6 +140,7 @@ export default function EditProductForm({ handleClose, setProducts }) {
                                 label="ImageUrl"
                                 type="imageUrl"
                                 id="imageUrl"
+                                defaultValue={previousImageUrl}
                             />
                         </Grid>
 
