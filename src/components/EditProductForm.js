@@ -8,17 +8,17 @@ import Container from '@mui/material/Container';
 
 export default function EditProductForm({ handleClose, setProducts }) {
 
+    const previousName = localStorage.getItem('name')
+    const previousPrice = localStorage.getItem('price')
+    const previousDiscount = localStorage.getItem('discount')
+    const previousSponsored = localStorage.getItem('sponsored')
+    const previousDescription = localStorage.getItem('description')
+    const previousRating = localStorage.getItem('rating')
+    const previousImageUrl = localStorage.getItem('imageUrl')
+
     const handleSubmit = (event) => {
 
         event.preventDefault();
-
-        const previousName = localStorage.getItem('name')
-        const previousPrice = localStorage.getItem('price')
-        const previousDiscount = localStorage.getItem('discount')
-        const previousSponsored = localStorage.getItem('sponsored')
-        const previousDescription = localStorage.getItem('description')
-        const previousRating = localStorage.getItem('rating')
-        const previousImageUrl = localStorage.getItem('imageUrl')
 
         const data = new FormData(event.currentTarget);
         const newName = data.get('name')
