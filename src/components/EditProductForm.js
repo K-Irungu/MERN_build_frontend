@@ -8,22 +8,19 @@ import Container from '@mui/material/Container';
 
 export default function EditProductForm({ handleClose, setProducts }) {
 
-
-    const previousName = localStorage.getItem('name') 
-    const previousPrice = localStorage.getItem('price')
-    const previousDiscount = localStorage.getItem('discount')
-    const previousSponsored = localStorage.getItem('sponsored')
-    const previousDescription = localStorage.getItem('description')
-    const previousRating = localStorage.getItem('rating')
-    const previousImageUrl = localStorage.getItem('imageUrl') 
-
-
-
     const handleSubmit = (event) => {
 
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
 
+        const previousName = localStorage.getItem('name')
+        const previousPrice = localStorage.getItem('price')
+        const previousDiscount = localStorage.getItem('discount')
+        const previousSponsored = localStorage.getItem('sponsored')
+        const previousDescription = localStorage.getItem('description')
+        const previousRating = localStorage.getItem('rating')
+        const previousImageUrl = localStorage.getItem('imageUrl')
+
+        const data = new FormData(event.currentTarget);
         const newName = data.get('name')
         const newPrice = data.get('price')
         const newDiscount = data.get('discount')
@@ -32,23 +29,25 @@ export default function EditProductForm({ handleClose, setProducts }) {
         const newRating = data.get('rating')
         const newImageUrl = data.get('imageUrl')
 
+        const configurationObject = {
+            _id: localStorage.getItem("productId"),
+            name: newName === "" ? previousName : newName,
+            price: newPrice === "" ? previousPrice : newPrice,
+            discount: newDiscount === "" ? previousDiscount : newDiscount,
+            sponsored: newSponsored === "" ? previousSponsored : newSponsored,
+            description: newDescription === "" ? previousDescription : newDescription,
+            rating: newRating === "" ? previousRating : newRating,
+            imageUrl: newImageUrl === "" ? previousImageUrl : newImageUrl
+        }
+
         fetch("https://mern-build-backend-2.onrender.com/update", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                _id: localStorage.getItem("productId"),
-                name: newName === "" ? previousName : newName,
-                price: newPrice === "" ? previousPrice : newPrice,
-                discount: newDiscount === "" ? previousDiscount : newDiscount,
-                sponsored: newSponsored === "" ? previousSponsored : newSponsored,
-                description: newDescription === "" ? previousDescription : newDescription,
-                rating: newRating === "" ? previousRating : newRating,
-                imageUrl: newImageUrl === "" ? previousImageUrl : newImageUrl
-            })
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(configurationObject)
         })
-            .then(fetch("https://mern-build-backend-2.onrender.com").then((res) => res.json()).then((data) => setProducts(data)))
+        .then(fetch("https://mern-build-backend-2.onrender.com")
+        .then((res) => res.json())
+        .then((data) => setProducts(data)))
         handleClose();
     };
 
@@ -111,17 +110,14 @@ export default function EditProductForm({ handleClose, setProducts }) {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-
                                 fullWidth
                                 name="description"
                                 label="Description"
                                 defaultValue={previousDescription}
-
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-
                                 fullWidth
                                 name="rating"
                                 label="Rating (1-5)"
@@ -129,12 +125,9 @@ export default function EditProductForm({ handleClose, setProducts }) {
                                 id="rating"
                                 defaultValue={previousRating}
                             />
-
-
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-
                                 fullWidth
                                 name="imageUrl"
                                 label="ImageUrl"
@@ -143,9 +136,7 @@ export default function EditProductForm({ handleClose, setProducts }) {
                                 defaultValue={previousImageUrl}
                             />
                         </Grid>
-
                     </Grid>
-
                     <Button
                         type="submit"
                         fullWidth
@@ -167,8 +158,6 @@ export default function EditProductForm({ handleClose, setProducts }) {
                     >
                         BACK TO PRODUCTS
                     </Button>
-
-
                 </Box>
             </Box>
         </Container>
