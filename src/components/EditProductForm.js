@@ -123,14 +123,23 @@ export default function EditProductForm({ handleClose, setProducts }) {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <TextField
+                        <TextField
+                                select
+                                required
                                 fullWidth
                                 name="rating"
-                                label="Rating (1-5)"
+                                label="Rating"
                                 type="rating"
                                 id="rating"
                                 defaultValue={previousRating}
-                            />
+                            >
+                                <MenuItem key="1" value="1"> 1 </MenuItem>
+                                <MenuItem key="2" value="2"> 2 </MenuItem>
+                                <MenuItem key="3" value="3"> 3 </MenuItem>
+                                <MenuItem key="4" value="4"> 4 </MenuItem>
+                                <MenuItem key="5" value="5"> 5 </MenuItem>
+
+                            </TextField>
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
